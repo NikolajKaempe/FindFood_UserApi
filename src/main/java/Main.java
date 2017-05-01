@@ -11,8 +11,8 @@ import static spark.Spark.port;
  * Created by Kaempe on 03-04-2017.
  */
 public class Main {
-    public final static String DB_URL = "mysql://80.255.6.114:3306/AirshipOne";
-    //public final static String DB_URL = "mysql://localhost:3306/AirshipOne";
+    //public final static String DB_URL = "mysql://80.255.6.114:3306/AirshipOne";
+    public final static String DB_URL = "mysql://localhost:3306/AirshipOne";
     public final static String DB_USER = "AirshipOneUser";
     public final static String DB_PASS = "123456";
 

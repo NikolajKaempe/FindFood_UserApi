@@ -21,9 +21,9 @@ public class FireBaseDatabase
         try {
             // During development
 
-            FileInputStream serviceAccount = new FileInputStream("src//main/java/firebaseFiles/recipes-2c54d-firebase-adminsdk-2lkaa-d26faaad1d.json");
+            //FileInputStream serviceAccount = new FileInputStream("src//main/java/firebaseFiles/recipes-2c54d-firebase-adminsdk-2lkaa-d26faaad1d.json");
 
-            //FileInputStream serviceAccount = new FileInputStream("files/recipes-2c54d-firebase-adminsdk-2lkaa-d26faaad1d.json");
+            FileInputStream serviceAccount = new FileInputStream("files/recipes-2c54d-firebase-adminsdk-2lkaa-d26faaad1d.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
