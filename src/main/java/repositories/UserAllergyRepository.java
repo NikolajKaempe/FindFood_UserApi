@@ -27,7 +27,7 @@ public class UserAllergyRepository implements IUserAllergyRepository {
         Collection<Allergy> allergies;
         String sql =
                 "SELECT allergyId, allergyName, allergyDescription " +
-                        "FROM Allergies ";
+                    "FROM Allergies ";
         try{
             Connection con = sql2o.open();
             allergies = con.createQuery(sql)
@@ -48,7 +48,7 @@ public class UserAllergyRepository implements IUserAllergyRepository {
         Allergy allergy;
         String sql =
                 "SELECT allergyId, allergyName, allergyDescription " +
-                        "FROM Allergies " +
+                    "FROM Allergies " +
                         "WHERE allergyId = :id";
         try{
             Connection con = sql2o.open();
@@ -67,7 +67,7 @@ public class UserAllergyRepository implements IUserAllergyRepository {
     public boolean exists(int id) {
         String sql =
                 "SELECT allergyId FROM Allergies " +
-                        "WHERE allergyId = :id";
+                    "WHERE allergyId = :id";
         try{
             Connection con = sql2o.open();
             Integer allergyId = con.createQuery(sql)
@@ -90,7 +90,7 @@ public class UserAllergyRepository implements IUserAllergyRepository {
             Collection<Allergy> allergies;
             String sql =
                     "SELECT allergyId, allergyName, allergyDescription " +
-                            "FROM Allergies " +
+                        "FROM Allergies " +
                             "WHERE allergyName LIKE :search";
             try{
                 Connection con = sql2o.open();
@@ -113,10 +113,10 @@ public class UserAllergyRepository implements IUserAllergyRepository {
         Collection<Allergy> allergies;
         String sql =
                 "SELECT allergyId, allergyName, allergyDescription " +
-                        "FROM Allergies WHERE allergyId IN(" +
-                            "SELECT allergyId FROM UserAllergies " +
-                            "WHERE userId = :id" +
-                        ")";
+                    "FROM Allergies WHERE allergyId IN(" +
+                        "SELECT allergyId FROM UserAllergies " +
+                        "WHERE userId = :id" +
+                    ")";
         try{
             Connection con = sql2o.open();
             allergies = con.createQuery(sql)
@@ -140,12 +140,12 @@ public class UserAllergyRepository implements IUserAllergyRepository {
         }
 
         String sqlRelationsToDelete =
-                "DELETE FROM UserAllergies WHERE " +
-                        "userId = :id";
+                "DELETE FROM UserAllergies " +
+                    "WHERE userId = :id";
 
         String sqlRelationsToUpdate =
                 "INSERT INTO UserAllergies (allergyId, userId) " +
-                        "VALUES (:allergyId, :userId )";
+                    "VALUES (:allergyId, :userId )";
 
         try{
             Connection con = sql2o.beginTransaction();

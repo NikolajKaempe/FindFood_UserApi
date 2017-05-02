@@ -11,10 +11,10 @@ import static spark.Spark.port;
  * Created by Kaempe on 03-04-2017.
  */
 public class Main {
-    //public final static String DB_URL = "mysql://80.255.6.114:3306/AirshipOne";
-    public final static String DB_URL = "mysql://localhost:3306/AirshipOne";
-    public final static String DB_USER = "AirshipOneUser";
-    public final static String DB_PASS = "123456";
+    //public final static String DB_URL = "mysql://80.255.6.114:3306/FindFood_User";
+    public final static String DB_URL = "mysql://localhost:3306/FindFood_User";
+    public final static String DB_USER = "FF_User";
+    public final static String DB_PASS = "Dr4X8gvT";
 
     public static void main( String[] args) {
         port(9654);

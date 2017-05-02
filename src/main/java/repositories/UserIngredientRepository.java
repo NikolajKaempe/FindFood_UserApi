@@ -23,7 +23,8 @@ public class UserIngredientRepository implements IUserIngredientRepository {
     public Collection<Ingredient> getAll() {
         Collection<Ingredient> ingredients;
         String sql =
-                "SELECT * FROM Ingredients";
+                "SELECT ingredientId, ingredientName, ingredientDescription " +
+                    "FROM Ingredients";
         try{
             Connection con = sql2o.open();
             ingredients = con.createQuery(sql)
@@ -33,7 +34,8 @@ public class UserIngredientRepository implements IUserIngredientRepository {
             e.printStackTrace();
             return new ArrayList<>();
         }
-        return ingredients;    }
+        return ingredients;
+    }
 
     @Override
     public Ingredient get(int id) {
@@ -42,7 +44,8 @@ public class UserIngredientRepository implements IUserIngredientRepository {
         }
         Ingredient ingredient;
         String sql =
-                "SELECT * FROM Ingredients " +
+                "SELECT ingredientId, ingredientName, ingredientDescription " +
+                    "FROM Ingredients " +
                         "WHERE ingredientId = :id";
         try{
             Connection con = sql2o.open();
@@ -61,7 +64,7 @@ public class UserIngredientRepository implements IUserIngredientRepository {
     public boolean exists(int id) {
         String sql =
                 "SELECT ingredientId FROM Ingredients " +
-                        "WHERE ingredientId = :id";
+                    "WHERE ingredientId = :id";
         try{
             Connection con = sql2o.open();
             Integer allergyId = con.createQuery(sql)
@@ -81,7 +84,8 @@ public class UserIngredientRepository implements IUserIngredientRepository {
         if (nameToFind != null && !(nameToFind.equals(""))){
             Collection<Ingredient> ingredients;
             String sql =
-                    "SELECT * FROM Ingredients " +
+                    "SELECT ingredientId, ingredientName, ingredientDescription " +
+                        "FROM Ingredients " +
                             "WHERE ingredientName LIKE :search";
             try{
                 Connection con = sql2o.open();
@@ -103,10 +107,10 @@ public class UserIngredientRepository implements IUserIngredientRepository {
     public Collection<Ingredient> getAllDislikes(String userId) {
         Collection<Ingredient> ingredients;
         String sql =
-                "SELECT * " +
-                        "FROM Ingredients WHERE ingredientId IN(" +
+                "SELECT ingredientId, ingredientName, ingredientDescription " +
+                    "FROM Ingredients WHERE ingredientId IN(" +
                         "SELECT ingredientId FROM UserDislikedIngredients " +
-                        "WHERE userId = :id" +
+                            "WHERE userId = :id" +
                         ")";
         try{
             Connection con = sql2o.open();
@@ -125,11 +129,12 @@ public class UserIngredientRepository implements IUserIngredientRepository {
     public Collection<Ingredient> getAllFavorites(String userId) {
         Collection<Ingredient> ingredients;
         String sql =
-                "SELECT * " +
-                        "FROM Ingredients WHERE ingredientId IN(" +
+                "SELECT ingredientId, ingredientName, ingredientDescription " +
+                    "FROM Ingredients " +
+                    "WHERE ingredientId IN(" +
                         "SELECT ingredientId FROM UserFavoritedIngredients " +
                         "WHERE userId = :id" +
-                        ")";
+                    ")";
         try{
             Connection con = sql2o.open();
             ingredients = con.createQuery(sql)
@@ -154,11 +159,11 @@ public class UserIngredientRepository implements IUserIngredientRepository {
 
         String sqlRelationsToDelete =
                 "DELETE FROM UserDislikedIngredients WHERE " +
-                        "userId = :id";
+                    "userId = :id";
 
         String sqlRelationsToUpdate =
                 "INSERT INTO UserDislikedIngredients (ingredientId, userId) " +
-                        "VALUES (:ingredientId, :userId )";
+                    "VALUES (:ingredientId, :userId )";
 
         try{
             Connection con = sql2o.beginTransaction();
@@ -192,11 +197,11 @@ public class UserIngredientRepository implements IUserIngredientRepository {
 
         String sqlRelationsToDelete =
                 "DELETE FROM UserFavoritedIngredients WHERE " +
-                        "userId = :id";
+                    "userId = :id";
 
         String sqlRelationsToUpdate =
                 "INSERT INTO UserFavoritedIngredients (ingredientId, userId) " +
-                        "VALUES (:ingredientId, :userId )";
+                    "VALUES (:ingredientId, :userId )";
 
         try{
             Connection con = sql2o.beginTransaction();
@@ -230,11 +235,13 @@ public class UserIngredientRepository implements IUserIngredientRepository {
     {
         Collection<Allergy> allergies;
         String sql =
-                "SELECT * FROM Allergies " +
-                        "WHERE allergyId IN (" +
-                        "SELECT allergyId FROM IngredientAllergies " +
-                        "WHERE ingredientId = :id" +
-                        ")";
+                "SELECT allergyId, allergyName, allergyDescription " +
+                    "FROM Allergies " +
+                    "WHERE allergyId IN (" +
+                        "SELECT allergyId " +
+                            "FROM IngredientAllergies " +
+                            "WHERE ingredientId = :id" +
+                    ")";
         try{
             Connection con = sql2o.open();
             allergies = con.createQuery(sql)

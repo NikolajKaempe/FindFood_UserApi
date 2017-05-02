@@ -4,12 +4,10 @@ import models.Allergy;
 import models.Ingredient;
 import models.wrapper_models.Allergies;
 import models.wrapper_models.Ingredients;
-import netscape.security.ForbiddenTargetException;
 import org.sql2o.Sql2o;
 import repositories.UserIngredientRepository;
 import repositories.repositoryInterfaces.IUserIngredientRepository;
 
-import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -163,12 +161,5 @@ public class IngredientController
             res.status(400);
             return new String("Could'nt update favorite ingredients for the user with id " + userId);
         },json());
-
-        exception(IllegalAccessException.class, (e, req, res) -> {
-            res.status(401);
-            res.body(toJson(e.getMessage()));
-            res.type("application/json");
-        });
-
     }
 }

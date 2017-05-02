@@ -154,7 +154,7 @@ public class AllergyController
                                 req.attribute("userId","Markus");
                                 response.put("validToken",true );
                                 response.put("validResponse",true);
-                                req.attribute("role","FUCK OF!!!");
+                                req.attribute("role","client");
                             }
                         });
                 long timer = System.currentTimeMillis();
