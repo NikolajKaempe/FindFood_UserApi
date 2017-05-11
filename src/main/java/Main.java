@@ -17,7 +17,7 @@ public class Main {
     public final static String DB_PASS = "Dr4X8gvT";
 
     public static void main( String[] args) {
-        port(9654);
+        port(9653);
         Sql2o sql2o = new Sql2o(DB_URL, DB_USER, DB_PASS);
         new AllergyController(sql2o);
         new IngredientController(sql2o);

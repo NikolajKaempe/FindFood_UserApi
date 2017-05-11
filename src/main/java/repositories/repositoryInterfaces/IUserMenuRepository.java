@@ -1,6 +1,6 @@
 package repositories.repositoryInterfaces;
 
-import models.Menu;
+import models.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -12,8 +12,14 @@ public interface IUserMenuRepository extends IRepository<Menu>
 {
     Collection<Menu> getAll(Map<String,String> search);
     Collection<Menu> getAll(String userId);
+    Collection<Menu> getPublishers(String publisherName);
     boolean buyMenu(int menuId, String userId);
     boolean removeMenu(int menuId, String userId);
-    boolean toggleFavoriteMenu(int menuId, String userId);
-    boolean isMenuOwned(int menuId);
+    MealType getMealTypeFor(int id);
+    Collection<Recipe> getRecipesFor(int id);
+    Collection<Ingredient> getIngredientsFor(int id);
+    Collection<Allergy> getAllergiesFor(int id);
+    RecipeType getRecipeTypeFor(int recipeId);
+    Collection<MeasuredIngredient> getMeasuredIngredientsFor(int recipeId   );
+    Ingredient getIngredientFor(int recipeId);
 }

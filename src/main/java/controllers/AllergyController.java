@@ -152,7 +152,7 @@ public class AllergyController
                             @Override
                             public void onFailure(Exception e)  {
                                 req.attribute("userId","Markus");
-                                response.put("validToken",true );
+                                response.put("validToken",false );
                                 response.put("validResponse",true);
                                 req.attribute("role","client");
                             }
@@ -179,7 +179,10 @@ public class AllergyController
             }
         });
 
-        after((req, res) -> res.type("application/json"));
+        after((req, res) -> {
+            res.type("application/json");
+            res.header("responseServer","Server: 2");
+        });
 
         exception(IllegalArgumentException.class, (e, req, res) -> {
             res.status(400);

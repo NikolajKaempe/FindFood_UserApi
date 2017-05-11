@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static JsonUtil.JsonUtil.json;
+import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -98,7 +99,7 @@ public class RecipeController
                 return new String("Invalid search parameter");
             }
 
-            Collection<Recipe> recipes = recipeRepository.getAll(nameSearch);
+            Collection<Recipe> recipes = recipeRepository.getPublishers(nameSearch);
             if (recipes.size() != 0){
                 res.status(200);
                 return new Recipes(recipes);
@@ -170,7 +171,7 @@ public class RecipeController
             return new String("An error occurred and the Recipe with id " + id + " has not been bought by the user with id " + userId);
         },json());
 
-        post("/recipes/remove/:id", (req, res) ->
+        delete("/recipes/remove/:id", (req, res) ->
         {
             int id ;
             try{

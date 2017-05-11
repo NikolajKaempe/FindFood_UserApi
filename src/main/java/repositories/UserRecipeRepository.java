@@ -29,8 +29,10 @@ public class UserRecipeRepository implements IUserRecipeRepository {
             Connection con = sql2o.open();
             recipes = con.createQuery(sql)
                     .executeAndFetch(Recipe.class);
-            recipes.forEach(recipe -> recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId())));
-            recipes.forEach(recipe -> recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId())));
+            recipes.forEach(recipe ->  {
+                    recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId()));
+                    recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId()));
+            });
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -100,8 +102,10 @@ public class UserRecipeRepository implements IUserRecipeRepository {
                 recipes = con.createQuery(sql)
                         .addParameter("search","%" + nameToFind + "%")
                         .executeAndFetch(Recipe.class);
-                recipes.forEach(recipe -> recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId())));
-                recipes.forEach(recipe -> recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId())));
+                recipes.forEach(recipe ->  {
+                    recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId()));
+                    recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId()));
+                });
             }catch (Exception e)
             {
                 e.printStackTrace();
@@ -129,8 +133,10 @@ public class UserRecipeRepository implements IUserRecipeRepository {
             recipes = con.createQuery(sql)
                     .addParameter("id",userId)
                     .executeAndFetch(Recipe.class);
-            recipes.forEach(recipe -> recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId())));
-            recipes.forEach(recipe -> recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId())));
+            recipes.forEach(recipe ->  {
+                recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId()));
+                recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId()));
+            });
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -155,8 +161,10 @@ public class UserRecipeRepository implements IUserRecipeRepository {
                 recipes = con.createQuery(sql)
                         .addParameter("search","%" + nameToFind + "%")
                         .executeAndFetch(Recipe.class);
-                recipes.forEach(recipe -> recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId())));
-                recipes.forEach(recipe -> recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId())));
+                recipes.forEach(recipe ->  {
+                    recipe.setRecipeType(this.getRecipeTypeFor(recipe.getRecipeId()));
+                    recipe.setMeasuredIngredients(this.getMeasuredIngredientsFor(recipe.getRecipeId()));
+                });
             }catch (Exception e)
             {
                 e.printStackTrace();
@@ -209,7 +217,6 @@ public class UserRecipeRepository implements IUserRecipeRepository {
         return true;
     }
 
-    @Override
     public boolean isRecipeOwned(int recipeId, String userId) {
        Integer id;
         String sql =

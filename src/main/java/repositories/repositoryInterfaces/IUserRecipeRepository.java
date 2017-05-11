@@ -15,7 +15,6 @@ public interface IUserRecipeRepository extends IRepository<Recipe>
     Collection<Recipe> getPublishers(String publisherName);
     boolean buyRecipe(int recipeId, String userId);
     boolean removeRecipe(int recipeId, String userId);
-    boolean isRecipeOwned(int recipeId, String userId);
     RecipeType getRecipeTypeFor(int id);
     Collection<MeasuredIngredient> getMeasuredIngredientsFor(int id);
     Ingredient getIngredientFor(int id);
